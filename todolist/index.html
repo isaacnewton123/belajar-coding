@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="flex w-full h-screen bg-white-500 flex-col justify-center items-center flex-nowrap gap-6">
+      <input
+        id="input-task"
+        type="text"
+        placeholder="Tambahkan Tugas"
+        class="w-1/4 py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        id="add-task" class="bg-sky-500 text-white py-2 px-4 rounded-md hover:bg-sky-200"
+      >
+        Tambah
+      </button>
+
+<div id="container-task" class="flex w-auto h-auto bg-gray-100 flex-col justify-center items-center flex-nowrap gap-4" >
+    <!-- <ul class="flex w-200 h-20 flex-row justify-between items-center flex-nowrap gap-4 p-4">
+        <span class="text-xl">Membaca Buku</span>
+            <li class="flex items-center gap-4">
+                <button class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-gray-200">Hapus</button>
+                <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-gray-200">selesai</button>
+            </li>
+    </ul>
+    <ul class="flex w-200 h-20 flex-row justify-between items-center flex-nowrap gap-4 p-4">
+        <span class="text-xl">Membaca Buku</span>
+            <li class="flex items-center gap-4">
+                <button class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-gray-200">Hapus</button>
+                <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-gray-200">selesai</button>
+            </li>
+    </ul>
+    <ul class="flex w-200 h-20 flex-row justify-between items-center flex-nowrap gap-4 p-4">
+        <span class="text-xl">Membaca Buku</span>
+            <li class="flex items-center gap-4">
+                <button class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-gray-200">Hapus</button>
+                <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-gray-200">selesai</button>
+            </li>
+    </ul>
+    <ul class="flex w-200 h-20 flex-row justify-between items-center flex-nowrap gap-4 p-4">
+        <span class="text-xl">Membaca Buku</span>
+            <li class="flex items-center gap-4">
+                <button class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-gray-200">Hapus</button>
+                <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-gray-200">selesai</button>
+            </li>
+    </ul> -->
+</div>
+</body>
+<script>
+    let data = [{
+        id: Date.now() + 1,
+        text: 'Membaca Buku',
+        isCompleted: true
+    },
+    {
+        id: Date.now() + 2,
+        text: 'Belajar Javascript',
+        isCompleted: false
+    },
+    {
+        id: Date.now() + 3,
+        text: 'Mangkal Ojol',
+        isCompleted: true
+    }];
+
+    const taskContainer = document.querySelector('#container-task');
+    const buttonAddTask = document.querySelector('#add-task');
+    const inputTask = document.querySelector('#input-task');
+
+    function render () {
+        
+        taskContainer.innerHTML = '' ;
+
+       data.forEach(task => {
+            const taskValue = document.createElement('ul');
+                taskValue.classList.add('flex', 'w-200', 'h-20', 'flex-row', 'justify-between', 'items-center', 'flex-nowrap', 'gap-4', 'p-4');
+
+            const textTask = document.createElement('span');
+                textTask.classList.add('text-xl');
+                textTask.textContent = task.text;
+
+            if (task.isCompleted === true) {
+                textTask.classList.add('line-through');
+            }
+
+            const buttonContainer = document.createElement('li');
+                buttonContainer.classList.add('flex', 'items-center', 'gap-4');
+
+
+            const buttonComplete = document.createElement('button');
+                buttonComplete.classList.add('bg-green-500', 'text-white', 'py-2', 'px-4', 'rounded-md', 'hover:bg-gray-200');
+                buttonComplete.textContent = 'Selesai';
+
+            buttonComplete.addEventListener ('click', () => {
+                task.isCompleted = !task.isCompleted;
+
+                render();
+            });
+
+            if (task.isCompleted === true) {
+                buttonComplete.classList.replace('bg-green-500', 'bg-gray-500');
+                buttonComplete.textContent = 'Batal'
+            }
+
+            const buttonDelete = document.createElement('button');
+                buttonDelete.classList.add('bg-red-500', 'text-white', 'py-2', 'px-4', 'rounded-md', 'hover:bg-gray-200');
+                buttonDelete.textContent = 'Hapus';
+
+            buttonDelete.addEventListener ('click', () => {
+                data = data.filter(t => 
+                t.id !== task.id);
+                render();
+            });
+
+            buttonContainer.appendChild(buttonComplete)
+            buttonContainer.appendChild(buttonDelete)
+            taskValue.appendChild(textTask)
+            taskValue.appendChild(buttonContainer)
+            taskContainer.appendChild(taskValue)
+        });
+    }
+
+    function tambahTugas () {
+        const textTask = inputTask.value.trim();
+            if (textTask === "") {
+                return;
+            }
+        
+        const valueTask = {
+            id: Date.now(),
+            text: inputTask.value,
+            isCompleted: false
+        };
+
+        data.unshift(valueTask);
+        inputTask.value = "";
+        render();
+    }
+
+    buttonAddTask.addEventListener ('click', tambahTugas );
+    inputTask.addEventListener('keyup', (event) => {
+        if (event.key === 'Enter') {
+            tambahTugas();
+        } 
+    })
+
+    render();
+
+</script>
+</html>

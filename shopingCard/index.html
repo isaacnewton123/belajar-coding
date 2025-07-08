@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoping Card</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class=" w-screen h-screen p-4 flex flex-row justify-center items-center gap-5 transition-all duration-300 ease-in-out">
+        <div class="w-1/2 h-auto bg-gray-100 p-4 rounded-lg flex flex-col justify-center items-center gap-4 transition-all duration-300 ease-in-out">
+            <h1 class="text-4xl text-center">Daftar Produk</h1>
+            <ul id="container-produk" class="w-3/4 h-auto bg-gray-200 p-4 rounded-lg flex flex-col justify-center items-center gap-4 transition-all duration-300 ease-in-out">
+                <!-- <li class="flex flex-row gap-1 h-24 items-center justify-between w-5/6">
+                    <img class="flex h-16 shadow-lg w-24" src="rumah.webp">
+                    <span class="text-xl text-center">Rumah
+                        <p class="text-gray-500">Rp.50.000.000</p>
+                    </span>
+                    <span class="text-xl">Stok
+                        <p class="text-lg text-gray-500 text-center">5</p>
+                    </span>
+                    <ol class="flex flex-row gap-4 h-12 justify-center w-56">
+                        <button class="bg-green-800 cursor-pointer flex flex-col gap-4 h-12 justify-center rounded-xl shadow-xl w-32 text-center text-white hover:bg-gray-500">Add To Cart</button>
+                    </ol>
+                </li>
+                <li class="flex flex-row gap-1 h-24 items-center justify-between w-5/6">
+                    <img class="flex h-16 shadow-lg w-24" src="rumah.webp">
+                    <span class="text-xl text-center">Rumah
+                        <p class="text-gray-500">Rp.50.000.000</p>
+                    </span>
+                    <span class="text-xl">Stok
+                        <p class="text-lg text-gray-500 text-center">5</p>
+                    </span>
+                    <ol class="flex flex-row gap-4 h-12 justify-center w-56">
+                        <button class="bg-green-800 cursor-pointer flex flex-col gap-4 h-12 justify-center rounded-xl shadow-xl w-32 text-center text-white hover:bg-gray-500">Add To Cart</button>
+                    </ol>
+                </li>
+                <li class=" flex flex-row gap-1 h-24 items-center justify-between w-5/6">
+                    <img class="flex h-16 shadow-lg w-24" src="rumah.webp">
+                    <span class="text-xl text-center">Rumah
+                        <p class="text-gray-500">Rp.50.000.000</p>
+                    </span>
+                    <span class="text-xl">Stok
+                        <p class="text-lg text-gray-500 text-center">5</p>
+                    </span>
+                    <ol class="flex flex-row gap-4 h-12 justify-center w-56">
+                        <button class="bg-green-800 cursor-pointer flex flex-col gap-4 h-12 justify-center rounded-xl shadow-xl w-32 text-center text-white hover:bg-gray-500">Add To Cart</button>
+                    </ol>
+                </li> -->
+            </ul>
+        </div>
+        <div class="w-1/2 h-auto bg-gray-100 p-4 rounded-lg flex flex-col justify-center items-center gap-4 transition-all duration-300 ease-in-out">
+            <h1 class="text-4xl text-center">Daftar Keranjang</h1>
+                <ul id="container-chart" class="w-3/4 h-auto bg-gray-200 p-4 rounded-lg flex flex-col justify-center items-center gap-4 transition-all duration-300 ease-in-out">
+                <!-- <li class="flex flex-row gap-1 h-24 items-center justify-between w-5/6">
+                    <img class="flex h-16 shadow-lg w-24" src="rumah.webp">
+                    <span class="text-xl text-center">Rumah
+                        <p class="text-gray-500">Rp.50.000.000</p>
+                    </span>
+                    <span class="text-xl">Amount
+                        <p class="text-lg text-gray-500 text-center">5</p>
+                    </span>
+                    <ol class="flex flex-row gap-4 h-12 justify-center w-56">
+                        <button class="bg-red-800 cursor-pointer flex flex-col gap-4 h-12 justify-center rounded-xl shadow-xl w-32 text-center text-white hover:bg-gray-500">delete</button>
+                    </ol>
+                </li>
+                <li class="flex flex-row gap-1 h-24 items-center justify-between w-5/6">
+                    <img class="flex h-16 shadow-lg w-24" src="rumah.webp">
+                    <span class="text-xl text-center">Rumah
+                        <p class="text-gray-500">Rp.50.000.000</p>
+                    </span>
+                    <span class="text-xl">Amount
+                        <p class="text-lg text-gray-500 text-center">5</p>
+                    </span>
+                    <ol class="flex flex-row gap-4 h-12 justify-center w-56">
+                        <button class="bg-red-800 cursor-pointer flex flex-col gap-4 h-12 justify-center rounded-xl shadow-xl w-32 text-center text-white hover:bg-gray-500">delete</button>
+                    </ol>
+                </li>
+                <li class=" flex flex-row gap-1 h-24 items-center justify-between w-5/6">
+                    <img class="flex h-16 shadow-lg w-24" src="rumah.webp">
+                    <span class="text-xl text-center">Rumah
+                        <p class="text-gray-500">Rp.50.000.000</p>
+                    </span>
+                    <span class="text-xl">Amount
+                        <p class="text-lg text-gray-500 text-center">5</p>
+                    </span>
+                    <ol class="flex flex-row gap-4 h-12 justify-center w-56">
+                        <button class="bg-red-800 cursor-pointer flex flex-col gap-4 h-12 justify-center rounded-xl shadow-xl w-32 text-center text-white hover:bg-gray-500">delete</button>
+                    </ol>
+                </li> -->
+                
+            </ul>
+            <div id="total-price" class="cursor-text flex flex-row gap-4 h-16 justify-center w-80">
+                <!-- <h1 class="text-xl font-bold">
+                    Total Belanja :
+                </h1> -->
+                <!-- <p class="italic">Rp.150.000.000</p> -->
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+        let data = [{
+            id: Date.now() + 1,
+            name: 'rumah',
+            price: 200_000_000,
+            image: 'rumah.webp',
+            stok: 3
+        },
+        {
+            id: Date.now() + 2,
+            name: 'sawah',
+            price: 100_000_000,
+            image: 'rumah.webp',
+            stok: 5
+        },
+        {
+            id: Date.now() + 3,
+            name: 'Bitcoin',
+            price: 1_500_000_000,
+            image: 'rumah.webp',
+            stok: 4
+        }]
+
+        let chart = [];
+
+
+
+        const containerProduk = document.querySelector('#container-produk');
+        const containerChart = document.querySelector('#container-chart');
+        const totalPrice = document.querySelector('#total-price');
+
+
+
+        function produkRendering () {
+
+            containerProduk.innerHTML = "";
+            
+
+            if (!data.length) {
+                const anyText = document.createElement('h1');
+                    anyText.classList.add('text-4xl', 'text-gray-500');
+                    anyText.textContent = 'Tidak Ada Produk';
+
+                    containerProduk.appendChild(anyText);
+                    return
+                    
+            }
+            
+
+            data.forEach(produk => {
+                const boxProduk = document.createElement('li');
+                    boxProduk.classList.add('flex', 'flex-row', 'gap-1', 'h-24', 'items-center', 'justify-between', 'w-5/6')
+
+                const imageProduk = document.createElement('img');
+                    imageProduk.classList.add('flex', 'h-16', 'shadow-lg', 'w-24');
+                    imageProduk.src = produk.image;
+
+                const nameProduk = document.createElement('span')
+                    nameProduk.classList.add('text-xl', 'text-center');
+                    nameProduk.textContent = produk.name;
+                    
+                const priceProduk = document.createElement('p');
+                    priceProduk.classList.add('text-gray-500')
+                    priceProduk.textContent = produk.price;
+
+                const stokText = document.createElement('span');
+                    stokText.classList.add('text-xl');
+                    stokText.textContent = 'Stok';
+
+                const stokProduk = document.createElement('p')
+                    stokProduk.classList.add('text-lg', 'text-gray-500', 'text-center');
+                    stokProduk.textContent = produk.stok;
+
+                const containerButton = document.createElement('ol');
+                    containerButton.classList.add('flex', 'flex-row', 'gap-4', 'h-12', 'justify-center', 'w-56');
+
+                const buttonAddChart = document.createElement('button')
+                    buttonAddChart.classList.add('bg-green-800', 'cursor-pointer', 'flex', 'flex-col', 'gap-4', 'h-12', 'justify-center', 'rounded-xl', 'shadow-xl', 'w-32', 'text-center', 'text-white', 'hover:bg-gray-500');
+                    buttonAddChart.textContent = 'Add To Chart';
+
+
+                buttonAddChart.addEventListener('click', () => {
+                    if (produk.stok > 0){
+                        produk.stok--;
+
+                        let itemInChart = chart.find(item => item.id === produk.id);
+                            if (itemInChart) {
+                                itemInChart.amount++ ;
+                            } else {
+                                chart.push({id: produk.id, 
+                                            name: produk.name,
+                                            price: produk.price,
+                                            image: produk.image,
+                                            amount: 1
+                                        })
+                            }
+
+
+                            if (produk.stok === 0) {
+                                buttonAddChart.disabled = true
+                            }
+                            
+                                console.log('Isi keranjang sekarang:', chart);
+
+                                chartRender();
+                                produkRendering()
+
+                                }
+                            })
+
+                if (produk.stok === 0) {
+                    buttonAddChart.classList.replace('bg-green-800', 'bg-gray-500');
+                    buttonAddChart.classList.replace('cursor-pointer', 'cursor-not-allowed')
+                }
+                
+                containerButton.appendChild(buttonAddChart);
+                stokText.appendChild(stokProduk);
+                nameProduk.appendChild(priceProduk);
+                boxProduk.appendChild(imageProduk);
+                boxProduk.appendChild(nameProduk);
+                boxProduk.appendChild(stokText);
+                boxProduk.appendChild(containerButton);
+                containerProduk.appendChild(boxProduk);
+
+            })
+        }
+
+                function chartRender () {
+            
+            containerChart.innerHTML = "";
+
+            if (!chart.length) {
+                const anyChart = document.createElement('h1');
+                    anyChart.classList.add('text-4xl', 'text-gray-500');
+                    anyChart.textContent = 'Tidak Ada Apa Apa Di Keranjang';
+
+                    containerChart.appendChild(anyChart);
+            } else {
+                chart.forEach (chartItem => {
+                    const boxChart = document.createElement('li')
+                        boxChart.classList.add('flex', 'flex-row', 'gap-1', 'h-24', 'items-center', 'justify-between', 'w-5/6')
+
+                    const imageChart = document.createElement('img')
+                        imageChart.classList.add('flex', 'h-16', 'shadow-lg', 'w-24')
+                        imageChart.src = chartItem.image;
+
+                    const nameChart = document.createElement('span')
+                        nameChart.classList.add('text-xl', 'text-center');
+                        nameChart.textContent = chartItem.name;
+                    
+                    const priceChart = document.createElement('p');
+                        priceChart.classList.add('text-gray-500')
+                        priceChart.textContent = chartItem.price;
+
+                    const amountText = document.createElement('span');
+                        amountText.classList.add('text-xl');
+                        amountText.textContent = 'amount';
+
+                    const amountChart = document.createElement('p')
+                        amountChart.classList.add('text-lg', 'text-gray-500', 'text-center');
+                        amountChart.textContent = chartItem.amount;
+
+                    const containerButtonChart = document.createElement('ol');
+                        containerButtonChart.classList.add('flex', 'flex-row', 'gap-4', 'h-12', 'justify-center', 'w-56');
+
+                    const buttonRemove = document.createElement('button')
+                        buttonRemove.classList.add('bg-red-800', 'cursor-pointer', 'flex', 'flex-col', 'gap-4', 'h-12', 'justify-center', 'rounded-xl', 'shadow-xl', 'w-32', 'text-center', 'text-white', 'hover:bg-gray-500');
+                        buttonRemove.textContent = 'Remove';
+
+                    
+                    buttonRemove.addEventListener('click', () => {
+
+                        let shopingChart = data.find(a => a.id === chartItem.id)
+
+                          if(shopingChart) {
+                                shopingChart.stok++;
+                                chartItem.amount--;
+                                
+                            if (chartItem.amount === 0) {
+                                chart = chart.filter(f => f.amount > 0);
+                                buttonRemove.disabled = true
+                            }
+                        }
+                        
+                        produkRendering();
+                        chartRender();
+                    })
+
+                    containerButtonChart.appendChild(buttonRemove);
+                    amountText.appendChild(amountChart);
+                    nameChart.appendChild(priceChart);
+                    boxChart.appendChild(imageChart);
+                    boxChart.appendChild(nameChart);
+                    boxChart.appendChild(amountText);
+                    boxChart.appendChild(containerButtonChart);
+                    containerChart.appendChild(boxChart)
+                })
+            }
+            totalPrice.innerHTML = ''
+
+            const textTotal = document.createElement('h1')
+                textTotal.classList.add('"text-xl', 'font-bold')
+                textTotal.textContent = 'Total Belanja : '
+
+            const priceChart = document.createElement('p')
+                priceChart.classList.add('italic')
+
+                
+            const priceSummation = chart.reduce((acumulation, object) => {
+                return acumulation + (object.price * object.amount)
+            }, 0);
+            
+                priceChart.textContent = priceSummation;
+
+                console.log(priceSummation);
+                
+
+                textTotal.appendChild(priceChart)
+                totalPrice.appendChild(textTotal)
+        }
+        
+
+        
+
+        produkRendering();
+        chartRender();
+        
+</script>
+</html>
