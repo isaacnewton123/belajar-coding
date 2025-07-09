@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="flex w-full h-screen bg-white-500 flex-col justify-center items-center flex-nowrap gap-6">
+      <input
+        id="input-task"
+        type="text"
+        placeholder="Tambahkan Tugas"
+        class="w-1/4 py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        id="add-task" class="cursor-pointer bg-sky-500 text-white py-2 px-4 rounded-md hover:bg-sky-200"
+      >
+        Tambah
+      </button>
+
+<div id="container-task" class="flex w-auto h-auto bg-gray-100 flex-col justify-center items-center flex-nowrap gap-4" >
+    </div>
+</body>
+<script>
+
+    const taskContainer = document.querySelector('#container-task');
+    const buttonAddTask = document.querySelector('#add-task');
+    const inputTask = document.querySelector('#input-task');
+
+    class task{
+        constructor(id, userId, title, completed) {
+            this.id = id;
+            this.userId = userId;
+            this.title = title;
+            this.completed = completed;
+        }
+
+        markAsCompleted () {
+            this.completed = !this.completed
+        } 
+        
+        render () {
+            const taskValue = document.createElement('ul');
+                taskValue.classList.add('flex', 'w-200', 'h-20', 'flex-row', 'justify-between', 'items-center', 'flex-nowrap', 'gap-4', 'p-4');
+
+            const textTask = document.createElement('span');
+                textTask.classList.add('text-xl');
+                textTask.textContent = this.title;
+
+            if (this.completed === true) {
+                textTask.classList.add('line-through');
+            }
+
+            const buttonContainer = document.createElement('li');
+                buttonContainer.classList.add('flex', 'items-center', 'gap-4');
+
+            const buttonComplete = document.createElement('button');
+                buttonComplete.classList.add('cursor-pointer', 'bg-green-500', 'text-white', 'py-2', 'px-4', 'rounded-md', 'hover:bg-gray-200');
+                buttonComplete.textContent = 'Selesai';
+
+            buttonComplete.addEventListener ('click', () => {
+                putData(this)
+            });
+
+            if (this.completed === true) {
+                buttonComplete.classList.replace('bg-green-500', 'bg-gray-500');
+                buttonComplete.textContent = 'Batal'
+            }
+
+            const buttonDelete = document.createElement('button');
+                buttonDelete.classList.add('cursor-pointer', 'bg-red-500', 'text-white', 'py-2', 'px-4', 'rounded-md', 'hover:bg-gray-200');
+                buttonDelete.textContent = 'Hapus';
+
+            buttonDelete.addEventListener ('click', () => {
+                deleteData(this)
+            });
+
+            buttonContainer.append(buttonComplete, buttonDelete)
+            taskValue.append(textTask, buttonContainer)
+
+            
+            return taskValue;
+        }
+    }    
+    
+
+    let todos = [];
+
+        async function getRawData() {
+            try {
+                const respond = await fetch('https://jsonplaceholder.typicode.com/todos')
+
+                if (!respond.ok) {
+                    throw new error(`gagal mengambil data! , Status ${respond.status}`)
+                }
+
+                const data = await respond.json()
+
+                const allowedData = [1, 2, 3, 4, 5, 6, 7];
+                const filtered = data.filter(a => allowedData.includes(a.id));
+                todos = filtered.map(item => {
+                    return new task(item.id, item.userId, item.title, item.completed)
+                })
+                    
+            } catch(error) {
+                error.log('gagal mengambil data', error)
+            }
+        }
+
+        async function putData(taskToUpdate) {
+
+            try {
+
+                const updateData = {
+                    "id": taskToUpdate.id,
+                    "userId": taskToUpdate.userId,
+                    "title": taskToUpdate.title,
+                    "completed": !taskToUpdate.completed
+                };
+
+                const respond = await fetch(`https://jsonplaceholder.typicode.com/todos/${taskToUpdate.id}`, {
+                  method: 'PUT',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(updateData),
+                });
+                
+                if (!respond.ok) {
+                    throw new error(`Gagal Mengubah Data! Status ${respond.status}`)
+                }
+
+                alert(`Berhasil Mengubah Data berkas ID: ${updateData.id} status Task Sekarang Menjadi ${updateData.completed}`)
+
+                taskToUpdate.markAsCompleted()
+                displayAllTask()
+            
+                } catch (error) {
+                    console.error(`Gagal Mengubah data `, error);
+                    alert(`gagal mengubah data ! Status ${respond.status}`)
+                }
+            }
+
+
+        async function deleteData(deleted) {
+            try {
+                const respond = await fetch(`https://jsonplaceholder.typicode.com/todos/${deleted.id}`, {
+                  method: 'DELETE'
+                });
+                
+                if (!respond.ok) {
+                    throw new error(`Gagal menghapus Data! Status ${respond.status}`)
+                }
+
+            
+                alert(`Berhasil Menghapus Data berkas ID: ${deleted.id}`)
+
+                todos = todos.filter(t => t.id !== deleted.id);
+                displayAllTask()
+            
+                } catch (error) {
+                    console.error(`Gagal menghapus data `, error);
+                    alert(`gagal Menghaspus data ! Status ${respond.status}`)
+                }
+            }
+
+        function displayAllTask () {
+            taskContainer.innerHTML = ''
+
+            if (todos.length === 0) {
+                taskContainer.classList.add('text-xl', 'font-bold', 'text-black')
+                taskContainer.textContent = 'Tidak Ada Tugas'
+                return
+            }
+
+            todos.forEach(b => {
+                const taskRender = b.render()
+                taskContainer.appendChild(taskRender)
+            })
+        }
+        
+
+        async function getData () {
+            if (todos.length === 0) {
+                await getRawData()
+            }
+            
+            displayAllTask()
+        }
+
+        console.log(getData())
+
+        getData()
+        
+</script>
+</html>
